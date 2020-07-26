@@ -5,7 +5,7 @@ import Rating from '@material-ui/lab/Rating';
 
 const IndividualReview = ({ name, icon, rating, position }) => {
     const { lati, lon, restresult, restView } = useContext(Context);
-    console.log("ddd", restView)
+    // console.log("ddd", restView)
     return (
         <div className="IndividualReview">
             <div className="row">

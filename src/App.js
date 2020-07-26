@@ -39,11 +39,22 @@ export default function App() {
   const [lati, setLati] = React.useState();
   const [lon, setLon] = React.useState();
 
+  // function AddRest(event) {
+
+  //   return (<div className="AddPlace">
+  //     <form>
+  //       Rest Name: <input type="text" />
+  //     </form>
+  //   </div>
+  //   )
+  // }
   const onMapClick = React.useCallback((event) => {
+    // AddRest(event)
     setMarkers(current => [...current, {
       lat: event.latLng.lat(),
       lng: event.latLng.lng(),
-      time: new Date()
+      time: new Date(),
+      name: " ",
     }])
   }, [])
 
@@ -65,6 +76,8 @@ export default function App() {
         value={{
           lati: lati,
           lon: lon,
+          markers: markers,
+          setMarkers: setMarkers
         }}
       >
         <h1>
@@ -99,7 +112,7 @@ export default function App() {
           onLoad={onMapLoad}
         >
           {markers.map(marker => (
-            <Marker key={marker.time.toISOString()}
+            <Marker key={marker.lat - marker.lng}
               position={{ lat: marker.lat, lng: marker.lng }}
               // icon={{
               //   // url: '/bear.svg',
@@ -117,7 +130,7 @@ export default function App() {
               setSelected(null)
             }}>
               <div>
-                <h2>Restraunt Spoted</h2>
+                <h2>{selected.name} has rating {selected.rating}</h2>
               </div>
             </InfoWindow>
           ) : null}

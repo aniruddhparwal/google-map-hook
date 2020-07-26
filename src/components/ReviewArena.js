@@ -3,10 +3,11 @@ import IndividualReview from "./IndividualReview"
 import Context from "../Context"
 import axios from "axios";
 import Rating from '@material-ui/lab/Rating';
+import { Marker } from "@react-google-maps/api";
 
 const ReviewArena = () => {
 
-    const { lati, lon, setError } = useContext(Context);
+    const { lati, lon, markers, setMarkers } = useContext(Context);
     const [restresult, setRestresult] = useState();
     const [value, setValue] = useState(2);
 
@@ -22,7 +23,7 @@ const ReviewArena = () => {
         });
         const response = request;
         if (response && response.status !== 200) {
-            setError("Error fetching weather information");
+            // setError("Error fetching weather information");
         }
         if (response) {
             console.log("Reesponse recived", response)
@@ -32,19 +33,31 @@ const ReviewArena = () => {
             setRestresult(restList)
             setRestView(restList)
             console.log("Result restresut", restList)
+            // listUpdate('5')
         }
     }, []);
-
     const listUpdate = (newValue) => {
         console.log("listUpdate")
-        console.log("listssUU", restList, newValue)
-
+        console.log("Rest List with Value", restView, newValue)
         setRestView(restresult.filter(details => newValue >= details.rating))
-
-        // restList = (restresult.filter(details => details.rating <= value))
-        console.log("listView", restView)
+        // console.log("restView", restresult)
+        // console.log("marker checck", markers)
+        setMarkers([])
+        restView.map(item => {
+            console.log("rating", item.rating)
+            if (newValue >= item.rating) {
+                console.log("accepted", markers)
+                setMarkers(current => [...current, {
+                    lat: item.geometry.location.lat,
+                    lng: item.geometry.location.lng,
+                    time: new Date(),
+                    name: item.name,
+                    rating: item.rating
+                }])
+            }
+        })
+        console.log("active markers", markers)
     }
-
     return (
         <div className="reviewArena">
             <Context.Provider
