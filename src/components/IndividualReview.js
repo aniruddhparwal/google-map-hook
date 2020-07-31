@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from "react"
 import Context from "../Context";
 import Rating from '@material-ui/lab/Rating';
 
-
 const IndividualReview = ({ name, icon, rating, position }) => {
     const { lati, lon, restresult, restView } = useContext(Context);
     // console.log("ddd", restView)
