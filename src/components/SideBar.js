@@ -16,6 +16,7 @@ const SideBar = () => {
               name={restu.name}
               imageSource={restu.icon}
               rating={restu.rating}
+              placeid={restu.place_id}
             />
           );
         }
