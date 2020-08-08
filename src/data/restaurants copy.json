@@ -1,0 +1,134 @@
+[
+  {
+    "rating": 4,
+    "price": "$",
+    "phone": "+14152520800",
+    "id": "E8RJkjfdcwgtyoPMjQ_Olg",
+    "alias": "four-barrel-coffee-san-francisco",
+    "is_closed": false,
+    "categories": [
+      {
+        "alias": "coffee",
+        "title": "Coffee & Tea"
+      }
+    ],
+    "review_count": 1738,
+    "name": "Straits Kitchen",
+    "url": "https://www.yelp.com/biz/four-barrel-coffee-san-francisco",
+    "coordinates": {
+      "latitude": -39.6787043028161,
+      "longitude": 175.799288861454
+    },
+    "image_url": "http://s3-media2.fl.yelpcdn.com/bphoto/MmgtASP3l_t4tPCL1iAsCg/o.jpg",
+    "location": {
+      "city": "San Francisco",
+      "country": "US",
+      "address2": "",
+      "address3": "",
+      "state": "CA",
+      "address1": "375 Valencia St",
+      "zip_code": "94103"
+    },
+    "distance": 1604.23,
+    "transactions": ["pickup", "delivery"]
+  },
+  {
+    "rating": 4,
+    "price": "$",
+    "phone": "+14152520800",
+    "id": "XQ7mkCIfcaX7sYYN2Uk_jg",
+    "alias": "Emporium Eatery and Bar",
+    "is_closed": false,
+    "categories": [
+      {
+        "alias": "coffee",
+        "title": "Coffee & Tea"
+      }
+    ],
+    "review_count": 1738,
+    "name": "The Forge",
+    "url": "https://www.yelp.com/biz/four-barrel-coffee-san-francisco",
+    "coordinates": {
+      "latitude": -39.489406,
+      "longitude": 176.918721
+    },
+    "image_url": "http://s3-media2.fl.yelpcdn.com/bphoto/MmgtASP3l_t4tPCL1iAsCg/o.jpg",
+    "location": {
+      "city": "San Francisco",
+      "country": "US",
+      "address2": "",
+      "address3": "",
+      "state": "CA",
+      "address1": "375 Valencia St",
+      "zip_code": "94103"
+    },
+    "distance": 1604.23,
+    "transactions": ["pickup", "delivery"]
+  },
+  {
+    "rating": 4,
+    "price": "$",
+    "phone": "+14152520800",
+    "id": "wmBj7FKcgTeWcsnsTGuxjg",
+    "alias": "four-barrel-coffee-san-francisco",
+    "is_closed": false,
+    "categories": [
+      {
+        "alias": "coffee",
+        "title": "Coffee & Tea"
+      }
+    ],
+    "review_count": 1738,
+    "name": "The Forge",
+    "url": "https://www.yelp.com/biz/four-barrel-coffee-san-francisco",
+    "coordinates": {
+      "latitude": -40.20836612853,
+      "longitude": 176.10072563202
+    },
+    "image_url": "http://s3-media2.fl.yelpcdn.com/bphoto/MmgtASP3l_t4tPCL1iAsCg/o.jpg",
+    "location": {
+      "city": "San Francisco",
+      "country": "US",
+      "address2": "",
+      "address3": "",
+      "state": "CA",
+      "address1": "375 Valencia St",
+      "zip_code": "94103"
+    },
+    "distance": 1604.23,
+    "transactions": ["pickup", "delivery"]
+  },
+  {
+    "rating": 4,
+    "price": "$",
+    "phone": "+14152520800",
+    "id": "HKRON0okcdO9JtEaDrYAhw",
+    "alias": "four-barrel-coffee-san-francisco",
+    "is_closed": false,
+    "categories": [
+      {
+        "alias": "coffee",
+        "title": "Coffee & Tea"
+      }
+    ],
+    "review_count": 1738,
+    "name": "Bistronomy",
+    "url": "https://www.yelp.com/biz/four-barrel-coffee-san-francisco",
+    "coordinates": {
+      "latitude": -39.4892827194224,
+      "longitude": 176.9181568699
+    },
+    "image_url": "http://s3-media2.fl.yelpcdn.com/bphoto/MmgtASP3l_t4tPCL1iAsCg/o.jpg",
+    "location": {
+      "city": "San Francisco",
+      "country": "US",
+      "address2": "",
+      "address3": "",
+      "state": "CA",
+      "address1": "375 Valencia St",
+      "zip_code": "94103"
+    },
+    "distance": 1604.23,
+    "transactions": ["pickup", "delivery"]
+  }
+]

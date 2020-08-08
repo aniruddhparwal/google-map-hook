@@ -1,0 +1,54 @@
+[
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": {
+        "lat": 51.4759003,
+        "lng": -0.0197732
+      },
+      "viewport": {
+        "northeast": {
+          "lat": 51.4771095302915,
+          "lng": -0.01819721970849797
+        },
+        "southwest": {
+          "lat": 51.4744115697085,
+          "lng": -0.02089518029150203
+        }
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/lodging-71.png",
+    "id": "4378e28db6044ab1ef00fa14eb477c3e42a59f1a",
+    "name": "Premier Inn London Greenwich hotel",
+    "opening_hours": {
+      "open_now": true
+    },
+    "photos": [
+      {
+        "height": 2848,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/112000017379897243816\">Premier Inn London Greenwich hotel</a>"
+        ],
+        "photo_reference": "CmRaAAAAAHX2UyHssQGckF6fZmFYFLbNkWYlyIUwaOsIclwZ5g5QjKy71recEE34vbUyhGzGb8NSCTlqlH9gPhtcKPqsbcUCd0mFcWD4_IfKSkuvDyTE-TzTgGMBwyMaZeKY0sPNEhCCZyNKrE7w7-aLBlkW8KJxGhQMQEM0Kgxp4oAjRb_gdetMQsoHyQ",
+        "width": 4288
+      }
+    ],
+    "place_id": "ChIJXakoVooCdkgRf_1woDgakC4",
+    "plus_code": {
+      "compound_code": "FXGJ+93 London, UK",
+      "global_code": "9C3XFXGJ+93"
+    },
+    "rating": 4.1,
+    "reference": "ChIJXakoVooCdkgRf_1woDgakC4",
+    "scope": "GOOGLE",
+    "types": [
+      "lodging",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 927,
+    "vicinity": "43-81 Greenwich High Road, London"
+  }
+]

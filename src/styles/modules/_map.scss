@@ -1,0 +1,9 @@
+.map {
+  width: 70%;
+  border: 2px solid red;
+  float: left;
+
+  @include respond(tablet) {
+    width: 100%;
+  }
+}
