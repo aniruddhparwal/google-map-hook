@@ -1,32 +1,53 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import StarRatings from "react-star-ratings";
+import Context from "../Context";
 import Popup from "reactjs-popup";
 import axios from "axios";
 import IndividualReview from "./IndividualReview"
 
-
 const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
-  let reviewResponse = ""
+  let reviewResponse
+  const { setAddReviewFlag, addReviewFlag } = useContext(Context);
+
   const reviewFetch = async () => {
     console.log("fetch review called");
-    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeid}&key=AIzaSyAlELmqkRobpn26ReMLLTirp7GHsaW8vy0`
+    if (placeid != null) {
+      const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeid}&key=AIzaSyAlELmqkRobpn26ReMLLTirp7GHsaW8vy0`
 
-    const request = await axios.get(url).catch((error) => {
-      console.log("erre", error)
-    });
-    const response = request;
-    if (response && response.status !== 200) {
-      // setError("Error fetching weather information");
-    }
-    if (response) {
-      reviewResponse = response.data.result.reviews
-      console.log("fetch Respone Review", response)
-      console.log("fetch Respone Review varable", reviewResponse)
+      const request = await axios.get(url).catch((error) => {
+        console.log("erre", error)
+      });
+
+      const response = request;
+
+      if (response && response.status !== 200) {
+        // setError("Error fetching weather information");
+      }
+      if (response) {
+        reviewResponse = response.data.result.reviews
+        console.log("fetch Respone Review", response)
+        console.log("fetch Respone Review varable", reviewResponse)
+      }
+    } else {
+      console.log("doing reviewresponse null")
+      reviewResponse = []
     }
   };
   useEffect(() => {
+    console.log("useeefect restcard")
     reviewFetch()
   }, [])
+
+  const addReview = () => {
+    console.log("addReview clicked before", reviewResponse)
+    // preventDefault()
+
+
+    console.log("addReview clicked")
+    // setAddReviewFlag(true)
+  }
+
+
   return (
     <div className="card">
       <img
@@ -50,31 +71,9 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
                 <a className="close" onClick={close}>
                   &times;
                         </a>
-                <div className="header"> {name}</div>
-
-                {/* <div className="popupClass card">
-                  <div>
-                    <img
-                      src={reviewResponse.data.result.reviews[0].profile_photo_url}
-                      alt="Reviewer"
-                      style={{ height: "100px" }}
-                    />
-                  </div>
-                  <div className="ReviewNameRating">
-                    <div><h1>{reviewResponse.data.result.reviews[0].author_name}</h1></div>
-                    <div><h3>{reviewResponse.data.result.reviews[0].text}</h3></div>
-                    <div> <StarRatings
-                      rating={reviewResponse.data.result.reviews[0].rating}
-                      starRatedColor="rgb(220,20,60)"
-                      starDimension="30px"
-                    />                </div>
-
-                  </div>
-                </div> */}
-
-
-
-
+                <div className="header"> {name}
+                  <button onClick={addReview()}>add review</button>
+                </div>
 
                 {reviewResponse.map((restu) => {
                   // { <h1>aaaa</h1> }

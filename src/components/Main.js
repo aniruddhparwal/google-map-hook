@@ -11,6 +11,8 @@ import axios from "axios";
 import AddRest from "./AddRest"
 import MapContent from "./MapContent";
 import SideBar from "./SideBar";
+import AddReview from "./AddReview"
+
 import * as restaurantsData from "./../data/restaurants.json";
 
 import Context from "../Context";
@@ -22,6 +24,7 @@ const Main = () => {
   const [minRating, setMinRating] = useState(1);
   const [addRestFlag, setAddRestFlag] = useState()
   const [tempCoords, setTempCoords] = useState([])
+  const [addReviewFlag, setAddReviewFlag] = useState()
 
   const resetMinRating = (newValue) => {
     console.log(`main: ${newValue}`);
@@ -108,11 +111,15 @@ const Main = () => {
             setRestaurants: setRestaurants,
             addRestFlag: addRestFlag,
             setAddRestFlag: setAddRestFlag,
+            addReviewFlag: addReviewFlag,
+            setAddReviewFlag: setAddReviewFlag,
             tempCoords: tempCoords,
             setTempCoords: setTempCoords
           }}
         >
           {addRestFlag && <AddRest />}
+          {addReviewFlag && <AddReview />}
+
           {location && <FilterRating />}
           {error && <Error />}
           {location && <MapContent />}

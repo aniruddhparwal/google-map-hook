@@ -24,6 +24,7 @@ const AddRest = () => {
                     lng: tempCoords.geometry.location.lng,
                 },
             },
+            place_id: null,
             rating: restRating,
             icon: "https://maps.gstatic.com/mapfiles/place_api/icons/lodging-71.png"
 
