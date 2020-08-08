@@ -19,7 +19,7 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
       // setError("Error fetching weather information");
     }
     if (response) {
-      reviewResponse = response
+      reviewResponse = response.data.result.reviews
       console.log("fetch Respone Review", response)
       console.log("fetch Respone Review varable", reviewResponse)
     }
@@ -52,7 +52,7 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
                         </a>
                 <div className="header"> {name}</div>
 
-                <div className="popupClass card">
+                {/* <div className="popupClass card">
                   <div>
                     <img
                       src={reviewResponse.data.result.reviews[0].profile_photo_url}
@@ -70,22 +70,25 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
                     />                </div>
 
                   </div>
-                </div>
+                </div> */}
 
 
 
 
 
-                {/* {reviewResponse.data.result.reviews.map((restu) => { */}
-
-                {/* // { console.log("indic=vidual review sun") }
-                  // < IndividualReview
-                  //   photo={restu.profile_photo_url}
-                  //   name={restu.author_name}
-                  //   rating={restu.rating}
-                  //   text={restu.text}
-                  // />
-
+                {reviewResponse.map((restu) => {
+                  // { <h1>aaaa</h1> }
+                  return (
+                    // { console.log("indic=vidual review sun") }
+                    <div>
+                      < IndividualReview
+                        photo={restu.profile_photo_url}
+                        name={restu.author_name}
+                        rating={restu.rating}
+                        text={restu.text}
+                      />
+                    </div>
+                  )
                   // <div className="popupClass card">
                   //   <div>
                   //     <img
@@ -105,9 +108,8 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
 
                   //   </div>
                   // </div>
-                //   <h1>aaaa</h1>
-                // })
-                // } */}
+                })
+                }
 
 
 
