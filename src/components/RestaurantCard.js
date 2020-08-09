@@ -1,6 +1,7 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import StarRatings from "react-star-ratings";
 import Context from "../Context";
+import Rating from '@material-ui/lab/Rating';
 import Popup from "reactjs-popup";
 import axios from "axios";
 import IndividualReview from "./IndividualReview"
@@ -8,6 +9,10 @@ import IndividualReview from "./IndividualReview"
 const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
   let reviewResponse
   const { setAddReviewFlag, addReviewFlag } = useContext(Context);
+  const [reviewName, setReviewName] = useState('AAA')
+  const [reviewText, setReviewText] = useState('DDD')
+  const [reviewRating, setReviewRating] = useState('5')
+  let reviewDetails = []
 
   const reviewFetch = async () => {
     console.log("fetch review called");
@@ -43,11 +48,26 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
     // preventDefault()
 
 
-    console.log("addReview clicked")
     // setAddReviewFlag(true)
+
+    console.log("addReview clicked")
   }
 
 
+  const handleReviewSubmit = (e, reviewName, setReviewName, reviewRating, setReviewRating, reviewText) => {
+    e.preventDefault()
+    // console.log("adred coo", tempCoords)
+    reviewDetails = {
+      author_name: reviewName,
+      rating: parseInt(reviewRating),
+      profile_photo_url: "https://maps.gstatic.com/mapfiles/place_api/icons/lodging-71.png"
+
+    }
+    reviewResponse = [...reviewResponse, reviewDetails]
+    console.log("reviewText", reviewDetails)
+    console.log("reviewText resoonn", reviewResponse)
+
+  }
   return (
     <div className="card">
       <img
@@ -67,12 +87,33 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
           <Popup trigger={<button className="button" onClick={reviewFetch}> review </button>} modal>
             {close => (
               // <div>{name}</div>
-              <div>
+              <div >
                 <a className="close" onClick={close}>
                   &times;
                         </a>
                 <div className="header"> {name}
-                  <button onClick={addReview()}>add review</button>
+                  <Popup
+                    trigger={<button className="button"> Add Review </button>}
+
+                  // closeOnDocumentClick
+                  >
+                    <form onSubmit={(e) => handleReviewSubmit(e, reviewName, setReviewName, reviewRating, setReviewRating, reviewText)}>
+                      <input type="text" value={reviewName} onChange={(e) => setReviewName(e.target.value)} />
+                      <input type="text" value={reviewText} onChange={(e) => setReviewText(e.target.value)} />
+                      <Rating
+                        name="simple-controlled"
+                        value={reviewRating}
+                        onChange={(event, newValue) => {
+                          if (newValue != null) {
+                            console.log("New Value", newValue)
+                            // setReviewRating(newValue);
+                          }
+                        }}
+                      />
+                      <button>submit</button>
+                    </form>
+                  </Popup>
+                  {/* <button onClick={addReview}>add review</button> */}
                 </div>
 
                 {reviewResponse.map((restu) => {

@@ -24,7 +24,7 @@ const Main = () => {
   const [minRating, setMinRating] = useState(1);
   const [addRestFlag, setAddRestFlag] = useState()
   const [tempCoords, setTempCoords] = useState([])
-  const [addReviewFlag, setAddReviewFlag] = useState()
+  const [addReviewFlag, setAddReviewFlag] = useState(false)
 
   const resetMinRating = (newValue) => {
     console.log(`main: ${newValue}`);
