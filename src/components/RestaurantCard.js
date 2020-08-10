@@ -41,7 +41,7 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
   useEffect(() => {
     console.log("useeefect restcard")
     reviewFetch()
-  }, [])
+  }, [reviewResponse])
 
   const addReview = () => {
     console.log("addReview clicked before", reviewResponse)
