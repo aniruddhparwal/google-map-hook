@@ -7,7 +7,8 @@ import axios from "axios";
 import IndividualReview from "./IndividualReview"
 
 const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
-  let reviewResponse
+  // let reviewResponse
+  const [reviewResponse, setReviewResponse] = useState([])
   const { setAddReviewFlag, addReviewFlag } = useContext(Context);
   const [reviewName, setReviewName] = useState('AAA')
   const [reviewText, setReviewText] = useState('DDD')
@@ -29,19 +30,21 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
         // setError("Error fetching weather information");
       }
       if (response) {
-        reviewResponse = response.data.result.reviews
+        // reviewResponse = response.data.result.reviews
+        setReviewResponse(response.data.result.reviews)
         console.log("fetch Respone Review", response)
         console.log("fetch Respone Review varable", reviewResponse)
       }
     } else {
       console.log("doing reviewresponse null")
-      reviewResponse = []
+      // reviewResponse = []
+      setReviewResponse([])
     }
   };
   useEffect(() => {
     console.log("useeefect restcard")
     reviewFetch()
-  }, [reviewResponse])
+  }, [])
 
   const addReview = () => {
     console.log("addReview clicked before", reviewResponse)
@@ -63,10 +66,11 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
       profile_photo_url: "https://maps.gstatic.com/mapfiles/place_api/icons/lodging-71.png"
 
     }
-    reviewResponse = [...reviewResponse, reviewDetails]
+    // reviewResponse = [...reviewResponse, reviewDetails]
+    setReviewResponse([...reviewResponse, reviewDetails])
     console.log("reviewText", reviewDetails)
     console.log("reviewText resoonn", reviewResponse)
-
+    // reviewFetch()
   }
   return (
     <div className="card">
