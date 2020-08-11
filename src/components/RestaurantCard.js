@@ -10,9 +10,9 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
   // let reviewResponse
   const [reviewResponse, setReviewResponse] = useState([])
   const { setAddReviewFlag, addReviewFlag } = useContext(Context);
-  const [reviewName, setReviewName] = useState('AAA')
-  const [reviewText, setReviewText] = useState('DDD')
-  const [reviewRating, setReviewRating] = useState('5')
+  const [reviewName, setReviewName] = useState('')
+  const [reviewText, setReviewText] = useState('')
+  const [reviewRating, setReviewRating] = useState('')
   let reviewDetails = []
 
   const reviewFetch = async () => {
@@ -63,9 +63,13 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
     reviewDetails = {
       author_name: reviewName,
       rating: parseInt(reviewRating),
+      text: reviewText,
       profile_photo_url: "https://maps.gstatic.com/mapfiles/place_api/icons/lodging-71.png"
 
     }
+    setReviewName('')
+    setReviewText('')
+    setReviewRating('')
     // reviewResponse = [...reviewResponse, reviewDetails]
     setReviewResponse([...reviewResponse, reviewDetails])
     console.log("reviewText", reviewDetails)
@@ -110,7 +114,7 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
                         onChange={(event, newValue) => {
                           if (newValue != null) {
                             console.log("New Value", newValue)
-                            // setReviewRating(newValue);
+                            setReviewRating(parseInt(newValue));
                           }
                         }}
                       />
