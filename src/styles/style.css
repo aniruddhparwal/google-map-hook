@@ -7,6 +7,13 @@
     background-color: azure;
 }
 
+button, input {
+    overflow: visible;
+    width: 70%;
+}
+/* .popup-content {
+    width: auto !important;
+} */
 .popupClass{
     display: flex;
     flex-direction: row;
