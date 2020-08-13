@@ -1,28 +1,29 @@
 import React, { useEffect, useContext, useState } from "react";
 import StarRatings from "react-star-ratings";
 import Context from "../Context";
-import Rating from '@material-ui/lab/Rating';
+import Rating from "@material-ui/lab/Rating";
 import Popup from "reactjs-popup";
 import axios from "axios";
-import IndividualReview from "./IndividualReview"
+import IndividualReview from "./IndividualReview";
 
 const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
   // let reviewResponse
-  const [reviewResponse, setReviewResponse] = useState([])
+  const [reviewResponse, setReviewResponse] = useState([]);
   const { setAddReviewFlag, addReviewFlag } = useContext(Context);
-  const [reviewName, setReviewName] = useState('')
-  const [reviewText, setReviewText] = useState('')
-  const [reviewRating, setReviewRating] = useState(0)
-  const [restImage, setRestImage] = useState('')
-  let reviewDetails = []
+  const [reviewName, setReviewName] = useState("");
+  const [reviewText, setReviewText] = useState("");
+  const [reviewRating, setReviewRating] = useState(0);
+  const [restImage, setRestImage] = useState("");
+  let reviewDetails = [];
 
   const reviewFetch = async () => {
     console.log("fetch review called");
+
     if (placeid != null) {
-      const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeid}&key=AIzaSyAlELmqkRobpn26ReMLLTirp7GHsaW8vy0`
+      const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeid}&key=AIzaSyAlELmqkRobpn26ReMLLTirp7GHsaW8vy0`;
 
       const request = await axios.get(url).catch((error) => {
-        console.log("erre", error)
+        console.log("erre", error);
       });
 
       const response = request;
@@ -32,60 +33,64 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
       }
       if (response) {
         // reviewResponse = response.data.result.reviews
-        setRestImage(response.data.result.photos[0].photo_reference)
-        setReviewResponse(response.data.result.reviews)
-        console.log("IMage", response.data.result.photos[0].photo_reference)
-        console.log("IMage", restImage)
-        console.log("fetch Respone Review", response)
-        console.log("fetch Respone Review varable", reviewResponse)
+        if (response.data.result.photos != null) {
+          setRestImage(response.data.result.photos[0].photo_reference);
+          setReviewResponse(response.data.result.reviews);
+        }
       }
     } else {
-      console.log("doing reviewresponse null")
+      console.log("doing reviewresponse null");
       // reviewResponse = []
-      setReviewResponse([])
+      setReviewResponse([]);
     }
   };
   useEffect(() => {
-    console.log("useeefect restcard")
-    reviewFetch()
-  }, [])
+    console.log("useeefect restcard");
+    console.log(`image source: ${imageSource}`);
+    reviewFetch();
+  }, []);
 
   const addReview = () => {
-    console.log("addReview clicked before", reviewResponse)
+    console.log("addReview clicked before", reviewResponse);
     // preventDefault()
-
 
     // setAddReviewFlag(true)
 
-    console.log("addReview clicked")
-  }
+    console.log("addReview clicked");
+  };
 
-
-  const handleReviewSubmit = (e, reviewName, setReviewName, reviewRating, setReviewRating, reviewText) => {
-    e.preventDefault()
+  const handleReviewSubmit = (
+    e,
+    reviewName,
+    setReviewName,
+    reviewRating,
+    setReviewRating,
+    reviewText
+  ) => {
+    e.preventDefault();
     // console.log("adred coo", tempCoords)
     if (reviewName !== "" && reviewText !== "" && reviewRating !== 0) {
       reviewDetails = {
         author_name: reviewName,
         rating: parseInt(reviewRating),
         text: reviewText,
-        profile_photo_url: "https://maps.gstatic.com/mapfiles/place_api/icons/lodging-71.png"
-
-      }
-      setReviewName('')
-      setReviewText('')
-      setReviewRating('')
+        profile_photo_url:
+          "https://maps.gstatic.com/mapfiles/place_api/icons/lodging-71.png",
+      };
+      setReviewName("");
+      setReviewText("");
+      setReviewRating("");
       // reviewResponse = [...reviewResponse, reviewDetails]
-      setReviewResponse([...reviewResponse, reviewDetails])
-      console.log("reviewText", reviewDetails)
-      console.log("reviewText resoonn", reviewResponse)
+      setReviewResponse([...reviewResponse, reviewDetails]);
+      console.log("reviewText", reviewDetails);
+      console.log("reviewText resoonn", reviewResponse);
       // reviewFetch()
     }
-  }
+  };
   return (
     <div className="card">
       <img
-        src={"https://maps.googleapis.com/maps/api/place/photo?photoreference=" + { restImage } + "&sensor=false&maxheight=500&maxwidth=500&key=AIzaSyAlELmqkRobpn26ReMLLTirp7GHsaW8vy0"}
+        src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${restImage}&sensor=false&maxheight=500&maxwidth=500&key=AIzaSyAlELmqkRobpn26ReMLLTirp7GHsaW8vy0`}
         alt="restaurant "
         className="restaurant-image"
       />
@@ -98,32 +103,68 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
         />
         <h2>
           {/* <button onClick={reviewFetch}>sss</button> */}
-          <Popup trigger={<button className="button" onClick={reviewFetch}> review </button>} modal>
-            {close => (
+          <Popup
+            trigger={
+              <button className="button" onClick={reviewFetch}>
+                {" "}
+                review{" "}
+              </button>
+            }
+            modal
+          >
+            {(close) => (
               // <div>{name}</div>
               <div className="reviewarea">
                 <a className="close" onClick={close}>
                   &times;
-                        </a>
-                <div className="header"> {name}
+                </a>
+                <div className="header">
+                  {" "}
+                  {name}
                   <Popup
                     trigger={<button className="button"> Add Review </button>}
 
                   // closeOnDocumentClick
                   >
-                    <form style={{ width: "auto" }} onSubmit={(e) => handleReviewSubmit(e, reviewName, setReviewName, reviewRating, setReviewRating, reviewText)}>
-                      Name:<input type="text" value={reviewName} onChange={(e) => setReviewName(e.target.value)} /><br />
-                      Comment:<input type="text" value={reviewText} onChange={(e) => setReviewText(e.target.value)} /><br />
-                      Rating:<Rating
+                    <form
+                      style={{ width: "auto" }}
+                      onSubmit={(e) =>
+                        handleReviewSubmit(
+                          e,
+                          reviewName,
+                          setReviewName,
+                          reviewRating,
+                          setReviewRating,
+                          reviewText
+                        )
+                      }
+                    >
+                      Name:
+                      <input
+                        type="text"
+                        value={reviewName}
+                        onChange={(e) => setReviewName(e.target.value)}
+                      />
+                      <br />
+                      Comment:
+                      <input
+                        type="text"
+                        value={reviewText}
+                        onChange={(e) => setReviewText(e.target.value)}
+                      />
+                      <br />
+                      Rating:
+                      <Rating
                         name="simple-controlled"
                         value={reviewRating}
                         onChange={(event, newValue) => {
                           if (newValue != null) {
-                            console.log("New Value", newValue)
+                            console.log("New Value", newValue);
                             setReviewRating(parseInt(newValue));
                           }
                         }}
-                      /><br />
+                      />
+                      <br />
                       <button>submit</button>
                     </form>
                   </Popup>
@@ -135,14 +176,14 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
                     return (
                       // { console.log("indic=vidual review sun") }
                       <div>
-                        < IndividualReview
+                        <IndividualReview
                           photo={restu.profile_photo_url}
                           name={restu.author_name}
                           rating={restu.rating}
                           text={restu.text}
                         />
                       </div>
-                    )
+                    );
                     // <div className="popupClass card">
                     //   <div>
                     //     <img
@@ -162,14 +203,8 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
 
                     //   </div>
                     // </div>
-                  })
-                  }
+                  })}
                 </div>
-
-
-
-
-
 
                 {/* <div className="actions">
                   <Popup
@@ -195,7 +230,6 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
                 </button>
                 </div> */}
               </div>
-
             )}
           </Popup>
         </h2>
