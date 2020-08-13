@@ -5,17 +5,17 @@ import '../styles/style.css'
 
 
 const AddRest = () => {
-    const { restaurants, addRestFlag, setAddRestFlag, setRestaurants, setTempCoords, tempCoords } = useContext(Context);
+    const { restaurants, setAddRestFlag, setRestaurants, tempCoords } = useContext(Context);
     const [restName, setRestName] = useState('')
-    const [restRating, setRestRating] = useState()
+    const [restRating, setRestRating] = useState(0)
     let restDetails = []
     useEffect(() => {
         console.log("AddRest")
         setAddRestFlag(true)
     }, [])
-    const handleSubmit = (e, restName, setRestName, restRating, setRestRating) => {
+    const handleSubmit = (e, restName, restRating) => {
         e.preventDefault()
-        console.log("adred coo", tempCoords)
+        // console.log("adred coo", tempCoords)
         restDetails = {
             name: restName,
             geometry: {
@@ -31,24 +31,24 @@ const AddRest = () => {
         }
         setRestaurants([...restaurants, restDetails])
 
-        console.log("resDetsils", restDetails)
-        console.log("formsubmit")
+        // console.log("resDetsils", restDetails)
+        // console.log("formsubmit")
         setAddRestFlag(false)
     }
 
-    console.log("AddRest")
+    // console.log("AddRest")
     return (
 
         <div className="addrest">
             <h1>Add Restaurant </h1>
-            <form onSubmit={(e) => handleSubmit(e, restName, setRestName, restRating, setRestRating)}>
-                <input type="text" value={restName} onChange={(e) => setRestName(e.target.value)} />
+            <form onSubmit={(e) => handleSubmit(e, restName, restRating)}>
+                <input type="text" value={restName} onChange={(e) => setRestName(e.target.value)} placeholder="name" />
                 <Rating
                     name="simple-controlled"
                     value={restRating}
                     onChange={(event, newValue) => {
                         if (newValue != null) {
-                            console.log("New Value", newValue)
+                            // console.log("New Value", newValue)
                             setRestRating(parseInt(newValue));
                         }
                     }}

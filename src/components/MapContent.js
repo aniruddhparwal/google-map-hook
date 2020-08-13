@@ -5,7 +5,6 @@ import Map from "./Map";
 const WrappedMap = withScriptjs(withGoogleMap(Map));
 
 const MapContent = () => {
-  const fetchRestaurants = () => {};
 
   return (
     <div className="map">

@@ -1,15 +1,12 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import StarRatings from "react-star-ratings";
-import Context from "../Context";
 import Rating from "@material-ui/lab/Rating";
 import Popup from "reactjs-popup";
 import axios from "axios";
 import IndividualReview from "./IndividualReview";
 
 const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
-  // let reviewResponse
   const [reviewResponse, setReviewResponse] = useState([]);
-  const { setAddReviewFlag, addReviewFlag } = useContext(Context);
   const [reviewName, setReviewName] = useState("");
   const [reviewText, setReviewText] = useState("");
   const [reviewRating, setReviewRating] = useState(0);
@@ -17,11 +14,8 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
   let reviewDetails = [];
 
   const reviewFetch = async () => {
-    console.log("fetch review called");
-
     if (placeid != null) {
       const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeid}&key=AIzaSyAlELmqkRobpn26ReMLLTirp7GHsaW8vy0`;
-
       const request = await axios.get(url).catch((error) => {
         console.log("erre", error);
       });
@@ -32,32 +26,18 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
         // setError("Error fetching weather information");
       }
       if (response) {
-        // reviewResponse = response.data.result.reviews
         if (response.data.result.photos != null) {
           setRestImage(response.data.result.photos[0].photo_reference);
           setReviewResponse(response.data.result.reviews);
         }
       }
     } else {
-      console.log("doing reviewresponse null");
-      // reviewResponse = []
       setReviewResponse([]);
     }
   };
   useEffect(() => {
-    console.log("useeefect restcard");
-    console.log(`image source: ${imageSource}`);
     reviewFetch();
   }, []);
-
-  const addReview = () => {
-    console.log("addReview clicked before", reviewResponse);
-    // preventDefault()
-
-    // setAddReviewFlag(true)
-
-    console.log("addReview clicked");
-  };
 
   const handleReviewSubmit = (
     e,
@@ -68,7 +48,6 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
     reviewText
   ) => {
     e.preventDefault();
-    // console.log("adred coo", tempCoords)
     if (reviewName !== "" && reviewText !== "" && reviewRating !== 0) {
       reviewDetails = {
         author_name: reviewName,
@@ -80,11 +59,7 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
       setReviewName("");
       setReviewText("");
       setReviewRating("");
-      // reviewResponse = [...reviewResponse, reviewDetails]
       setReviewResponse([...reviewResponse, reviewDetails]);
-      console.log("reviewText", reviewDetails);
-      console.log("reviewText resoonn", reviewResponse);
-      // reviewFetch()
     }
   };
   return (
@@ -102,7 +77,6 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
           starDimension="30px"
         />
         <h2>
-          {/* <button onClick={reviewFetch}>sss</button> */}
           <Popup
             trigger={
               <button className="button" onClick={reviewFetch}>
@@ -113,7 +87,6 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
             modal
           >
             {(close) => (
-              // <div>{name}</div>
               <div className="reviewarea">
                 <a className="close" onClick={close}>
                   &times;
@@ -123,8 +96,6 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
                   {name}
                   <Popup
                     trigger={<button className="button"> Add Review </button>}
-
-                  // closeOnDocumentClick
                   >
                     <form
                       style={{ width: "auto" }}
@@ -159,7 +130,7 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
                         value={reviewRating}
                         onChange={(event, newValue) => {
                           if (newValue != null) {
-                            console.log("New Value", newValue);
+                            // console.log("New Value", newValue);
                             setReviewRating(parseInt(newValue));
                           }
                         }}
@@ -168,13 +139,10 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
                       <button>submit</button>
                     </form>
                   </Popup>
-                  {/* <button onClick={addReview}>add review</button> */}
                 </div>
                 <div>
                   {reviewResponse.map((restu) => {
-                    // { <h1>aaaa</h1> }
                     return (
-                      // { console.log("indic=vidual review sun") }
                       <div>
                         <IndividualReview
                           photo={restu.profile_photo_url}
@@ -184,51 +152,8 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
                         />
                       </div>
                     );
-                    // <div className="popupClass card">
-                    //   <div>
-                    //     <img
-                    //       src={restu.photo}
-                    //       alt="Reviewer"
-                    //       style={{ height: "100px" }}
-                    //     />
-                    //   </div>
-                    //   <div className="ReviewNameRating">
-                    //     <div><h1>{restu.author_name}</h1></div>
-                    //     <div><h3>{restu.text}</h3></div>
-                    //     <div> <StarRatings
-                    //       rating={restu.rating}
-                    //       starRatedColor="rgb(220,20,60)"
-                    //       starDimension="30px"
-                    //     />                </div>
-
-                    //   </div>
-                    // </div>
                   })}
                 </div>
-
-                {/* <div className="actions">
-                  <Popup
-                    trigger={<button className="button"> Trigger </button>}
-                    position="top center"
-                    closeOnDocumentClick
-                  >
-                    <span>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-                      magni omnis delectus nemo, maxime molestiae dolorem numquam
-                      mollitia, voluptate ea, accusamus excepturi deleniti ratione
-                      sapiente! Laudantium, aperiam doloribus. Odit, aut.
-                  </span>
-                  </Popup>
-                  <button
-                    className="button"
-                    onClick={() => {
-                      console.log("modal closed ");
-                      close();
-                    }}
-                  >
-                    close modal
-                </button>
-                </div> */}
               </div>
             )}
           </Popup>
