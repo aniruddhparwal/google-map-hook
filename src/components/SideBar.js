@@ -14,7 +14,7 @@ const SideBar = () => {
             <RestaurantCard
               key={restu.name}
               name={restu.name}
-              imageSource={restu.icon}
+              imageSource={restu.photos}
               rating={restu.rating}
               placeid={restu.place_id}
             />

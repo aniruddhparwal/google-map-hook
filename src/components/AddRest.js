@@ -7,7 +7,7 @@ import '../styles/style.css'
 const AddRest = () => {
     const { restaurants, addRestFlag, setAddRestFlag, setRestaurants, setTempCoords, tempCoords } = useContext(Context);
     const [restName, setRestName] = useState('')
-    const [restRating, setRestRating] = useState('')
+    const [restRating, setRestRating] = useState()
     let restDetails = []
     useEffect(() => {
         console.log("AddRest")
@@ -49,7 +49,7 @@ const AddRest = () => {
                     onChange={(event, newValue) => {
                         if (newValue != null) {
                             console.log("New Value", newValue)
-                            setRestRating(newValue);
+                            setRestRating(parseInt(newValue));
                         }
                     }}
                 />

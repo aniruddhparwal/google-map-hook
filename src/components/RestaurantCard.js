@@ -13,6 +13,7 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
   const [reviewName, setReviewName] = useState('')
   const [reviewText, setReviewText] = useState('')
   const [reviewRating, setReviewRating] = useState(0)
+  const [restImage, setRestImage] = useState('')
   let reviewDetails = []
 
   const reviewFetch = async () => {
@@ -31,7 +32,10 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
       }
       if (response) {
         // reviewResponse = response.data.result.reviews
+        setRestImage(response.data.result.photos[0].photo_reference)
         setReviewResponse(response.data.result.reviews)
+        console.log("IMage", response.data.result.photos[0].photo_reference)
+        console.log("IMage", restImage)
         console.log("fetch Respone Review", response)
         console.log("fetch Respone Review varable", reviewResponse)
       }
@@ -81,7 +85,7 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
   return (
     <div className="card">
       <img
-        src={imageSource}
+        src={"https://maps.googleapis.com/maps/api/place/photo?photoreference=" + { restImage } + "&sensor=false&maxheight=500&maxwidth=500&key=AIzaSyAlELmqkRobpn26ReMLLTirp7GHsaW8vy0"}
         alt="restaurant "
         className="restaurant-image"
       />
@@ -102,7 +106,7 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
                   &times;
                         </a>
                 <div className="header"> {name}
-                  <Popup style={{ width: "auto" }}
+                  <Popup
                     trigger={<button className="button"> Add Review </button>}
 
                   // closeOnDocumentClick
