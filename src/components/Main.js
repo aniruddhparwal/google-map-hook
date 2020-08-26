@@ -21,7 +21,6 @@ const Main = () => {
   const [addReviewFlag, setAddReviewFlag] = useState(false)
 
   const resetMinRating = (newValue) => {
-    // console.log(`main: ${newValue}`);
     setMinRating(newValue);
   };
 
@@ -36,7 +35,6 @@ const Main = () => {
       setError("Error fetching weather information");
     }
     if (response) {
-      // setRestaurants(restaurantsData.default);
       console.log("sss", restaurantsData.default)
       setRestaurants(...restaurants, response.data.results);
     }
@@ -45,18 +43,12 @@ const Main = () => {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       setLocation({
-        // lat: -39.866667,
-        // lon: 176.283333,
         lat: position.coords.latitude,
         lon: position.coords.longitude,
       });
       searchApi(position.coords.latitude, position.coords.longitude)
     });
-    // set initial restaurants from json
-
-    // console.log("use effect run", location, restaurantsData.default)
     setRestaurants(restaurantsData.default);
-    // console.log("ani", restaurants)
     if (location) { searchApi(); }
   }, []);
 

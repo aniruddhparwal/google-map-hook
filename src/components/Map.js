@@ -4,15 +4,10 @@ import Context from "../Context";
 
 const Map = () => {
   const { location, restaurants, setAddRestFlag, minRating, setTempCoords } = useContext(Context);
-  // const [selected, setSelected] = useState(true);
 
   let data = []
-  // console.log("map", location)
-  // console.log("resmap", restaurants)
   const onMapClick = React.useCallback((event) => {
     setAddRestFlag(true)
-    // console.log("event", event.latLng.lat())
-    // console.log("event cl", typeof (restaurants))
     data = {
       "geometry": {
         "location": {
@@ -40,13 +35,10 @@ const Map = () => {
           if (restu.rating < minRating || !restu.rating) {
             return null;
           } else {
-            // console.log(restu)
             return (
               <Marker
                 key={restu.name}
                 position={{
-                  // lat: restu.coordinates.latitude,
-                  // lng: restu.coordinates.longitude,
                   lat: restu.geometry.location.lat,
                   lng: restu.geometry.location.lng,
                 }}

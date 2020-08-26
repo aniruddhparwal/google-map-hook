@@ -23,7 +23,6 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
       const response = request;
 
       if (response && response.status !== 200) {
-        // setError("Error fetching weather information");
       }
       if (response) {
         if (response.data.result.photos != null) {
@@ -130,7 +129,6 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
                         value={reviewRating}
                         onChange={(event, newValue) => {
                           if (newValue != null) {
-                            // console.log("New Value", newValue);
                             setReviewRating(parseInt(newValue));
                           }
                         }}

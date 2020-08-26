@@ -15,7 +15,6 @@ const AddRest = () => {
     }, [])
     const handleSubmit = (e, restName, restRating) => {
         e.preventDefault()
-        // console.log("adred coo", tempCoords)
         restDetails = {
             name: restName,
             geometry: {
@@ -30,13 +29,9 @@ const AddRest = () => {
 
         }
         setRestaurants([...restaurants, restDetails])
-
-        // console.log("resDetsils", restDetails)
-        // console.log("formsubmit")
         setAddRestFlag(false)
     }
 
-    // console.log("AddRest")
     return (
 
         <div className="addrest">
@@ -48,7 +43,6 @@ const AddRest = () => {
                     value={restRating}
                     onChange={(event, newValue) => {
                         if (newValue != null) {
-                            // console.log("New Value", newValue)
                             setRestRating(parseInt(newValue));
                         }
                     }}
