@@ -36,6 +36,8 @@ const Main = () => {
       setError("Error fetching weather information");
     }
     if (response) {
+      // setRestaurants(restaurantsData.default);
+      console.log("sss", restaurantsData.default)
       setRestaurants(...restaurants, response.data.results);
     }
   };
@@ -53,7 +55,7 @@ const Main = () => {
     // set initial restaurants from json
 
     // console.log("use effect run", location, restaurantsData.default)
-    setRestaurants([restaurantsData.default]);
+    setRestaurants(restaurantsData.default);
     // console.log("ani", restaurants)
     if (location) { searchApi(); }
   }, []);
