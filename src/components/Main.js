@@ -32,7 +32,7 @@ const Main = () => {
     });
     const response = request;
     if (response && response.status !== 200) {
-      setError("Error fetching weather information");
+      setError("Error fetching information");
     }
     if (response) {
       console.log("sss", restaurantsData.default)
