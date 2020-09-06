@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import Context from "../Context";
 import RestaurantCard from "./RestaurantCard";
+import shortid from "shortid";
+
 
 const SideBar = () => {
   const { restaurants, minRating } = useContext(Context);
@@ -12,7 +14,7 @@ const SideBar = () => {
         } else {
           return (
             <RestaurantCard
-              key={restu.name}
+              key={shortid.generate()}
               name={restu.name}
               imageSource={restu.photos}
               rating={restu.rating}

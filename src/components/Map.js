@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
-import { GoogleMap, Marker } from "react-google-maps";
+import React, { useContext, useState } from "react";
+import { GoogleMap, Marker, InfoWindow } from "react-google-maps";
 import Context from "../Context";
 
 const Map = () => {
-  const { location, restaurants, setAddRestFlag, minRating, setTempCoords } = useContext(Context);
-
+  const { location, restaurants, setAddRestFlag, minRating, setTempCoords, addRestFlag } = useContext(Context);
+  const [markerView, setMarkerView] = useState()
+  const [selected, setSelected] = useState(null)
   let data = []
   const onMapClick = React.useCallback((event) => {
-    setAddRestFlag(true)
+    setAddRestFlag(!addRestFlag)
     data = {
       "geometry": {
         "location": {
@@ -19,7 +20,8 @@ const Map = () => {
     setTempCoords(data)
   })
   const onMarkerClick = (evt) => {
-    console.log("marker Clicked", evt, evt.latLng.lat, evt.latLng.lng);
+    console.log("marker Clicked", evt);
+    setMarkerView(!markerView)
   };
 
   return (
@@ -36,14 +38,27 @@ const Map = () => {
             return null;
           } else {
             return (
-              <Marker
-                key={restu.name}
-                position={{
-                  lat: restu.geometry.location.lat,
-                  lng: restu.geometry.location.lng,
-                }}
-                onClick={onMarkerClick}
-              />
+              <div>
+                <Marker
+                  key={restu.name}
+                  position={{
+                    lat: restu.geometry.location.lat,
+                    lng: restu.geometry.location.lng,
+                  }}
+                  onClick={() => {
+                    setSelected(restu)
+                  }
+                  }
+                />
+                {selected ? (
+                  <InfoWindow position={{
+                    lat: selected.geometry.location.lat,
+                    lng: selected.geometry.location.lng,
+                  }}
+                  >
+                    <span>{selected.name} has {selected.rating}.</span>
+                  </InfoWindow>) : null}
+              </div>
             );
           }
         })
