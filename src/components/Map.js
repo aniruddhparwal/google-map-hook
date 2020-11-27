@@ -56,7 +56,7 @@ const Map = () => {
                     lng: selected.geometry.location.lng,
                   }}
                   >
-                    <span>{selected.name} has {selected.rating}.</span>
+                    <span>{selected.name} has {selected.rating} star rating.</span>
                   </InfoWindow>) : null}
               </div>
             );

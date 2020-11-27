@@ -3,7 +3,7 @@
   border: 2px solid green;
   max-height: 80vh;
   float: right;
-  overflow: scroll;
+  overflow: auto;
 
   @include respond(tablet) {
     width: 100%;

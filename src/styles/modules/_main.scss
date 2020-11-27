@@ -4,7 +4,8 @@
   width: 98%;
   margin: 0 auto;
   border-radius: 3px;
-  overflow: scroll;
+  overflow: hidden;
+  height: 96vh;
 
   /* Clear floats after the columns */
   .row:after {
