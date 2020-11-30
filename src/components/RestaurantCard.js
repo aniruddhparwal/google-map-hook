@@ -36,7 +36,7 @@ const RestaurantCard = ({ name, imageSource, rating, placeid }) => {
   };
   useEffect(() => {
     reviewFetch();
-  }, []);
+  }, [name]);
 
   const handleReviewSubmit = (
     e,
