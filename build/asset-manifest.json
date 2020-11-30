@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/restaurant-review/static/css/main.75fce741.chunk.css",
-    "main.js": "/restaurant-review/static/js/main.3cdfd90e.chunk.js",
-    "main.js.map": "/restaurant-review/static/js/main.3cdfd90e.chunk.js.map",
+    "main.js": "/restaurant-review/static/js/main.fad45f31.chunk.js",
+    "main.js.map": "/restaurant-review/static/js/main.fad45f31.chunk.js.map",
     "runtime-main.js": "/restaurant-review/static/js/runtime-main.300b8b07.js",
     "runtime-main.js.map": "/restaurant-review/static/js/runtime-main.300b8b07.js.map",
     "static/css/2.f3495309.chunk.css": "/restaurant-review/static/css/2.f3495309.chunk.css",
@@ -18,6 +18,6 @@
     "static/css/2.f3495309.chunk.css",
     "static/js/2.b06034e8.chunk.js",
     "static/css/main.75fce741.chunk.css",
-    "static/js/main.3cdfd90e.chunk.js"
+    "static/js/main.fad45f31.chunk.js"
   ]
 }
